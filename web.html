@@ -1,0 +1,716 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Makima | Chainsaw Man</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+.text-section {
+  max-width: 750px;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUpText 1.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInUpText {
+  0% { opacity: 0; transform: translateY(80px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.info-image-container {
+  width: 80%;           
+  max-width: 900px;     
+  margin: 40px auto 0;  
+  border: 3px solid #e57373; 
+  border-radius: 12px;  
+  overflow: hidden;     
+  position: relative;
+  padding-top: 27.3%;  /* 202 ? 740 ? 0.273 -> %27.3 oran? */
+  box-shadow: 0 8px 20px rgba(229,115,115,0.2);
+}
+
+.info-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* Fotograf kutuyu doldurur, oran bozulmaz */
+}
+
+
+
+
+
+body {
+  background: linear-gradient(135deg, #f0f2f5 0%, #d9e2ec 100%);
+  color: #111;
+  overflow-x: hidden;
+  transition: background 0.8s ease;
+}
+#contact {
+  background: #111;
+  color: white;
+  padding: 80px 15%;
+  text-align: center;
+}
+
+#contact h2 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-weight: 900;
+  color: white;
+}
+
+#contact p {
+  font-size: 1.2rem;
+  color: #bbb;
+  margin-bottom: 40px;
+}
+.social-icons {
+  display: flex;
+  justify-content: center; /* Ortala yatayda */
+  align-items: center;     /* Ortala dikeyde */
+  gap: 60px;               /* Ikonlar aras? esit bosluk */
+  margin-bottom: 40px;
+}
+
+.social-icons a {
+  display: flex;           /* Ikonlar?n icine tam ortala */
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  transition: fill 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icons svg {
+  width: 100%;
+  height: 100%;
+  fill: #bbb;
+}
+
+.social-icons a[aria-label="Email"] {
+  font-size: 50px;
+  line-height: 50px;
+  color: #bbb;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons a:hover svg,
+.social-icons a:hover[aria-label="Email"] {
+  fill: #e57373;
+  color: #e57373;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+
+#contact .copyright {
+  font-size: 0.9rem;
+  color: #777;
+  user-select: none;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 25px 80px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  position: sticky;
+  top: 0;
+  background: #000;
+  border-bottom: 3px solid #000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 3px;
+  background: #e57373;
+  border-radius: 2px;
+  transition: transform 0.35s ease;
+}
+
+nav a:hover {
+  color: #e57373;
+  transform: translateY(-2px);
+}
+
+nav a:hover::after,
+nav a.selected::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+nav a.selected {
+  color: #e57373;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 80px 80px 80px;
+  position: relative;
+  min-height: 90vh;
+  overflow: hidden;
+}
+
+.background-text {
+  position: absolute;
+  top: 40px;
+  left: 80px;
+  font-weight: 900;
+  font-size: 260px;
+  color: rgba(0, 0, 0, 0.05);
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.2em;
+  z-index: 0;
+}
+
+.text-section h1 {
+  font-weight: 1000;
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+.text-section h1::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -8px;
+  width: 0;
+  height: 4px;
+  background: #e57373;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.text-section h1:hover::after {
+  width: 100%;
+}
+
+#typing-text {
+  font-size: 30px;
+  color: #e57373;
+  height: 40px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#typing-text::after {
+  content: '|';
+  animation: blink 0.8s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.1%, 100% { opacity: 0; }
+}
+.home-img {
+  width: 400px;           /* ölçünü sənin dizaynına görə tənzimlə */
+  border-radius: 20px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.home-img:hover {
+  transform: scale(1.05) translateY(-5px); /* kiçik hərəkət və zoom effekti */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.text-section p {
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.instagram-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+  color: #111;
+  cursor: pointer;
+}
+.instagram-link img {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  transition: transform 0.3s;
+}
+.instagram-link:hover img {
+  transform: scale(1.15);
+}
+#info {
+  background: linear-gradient(to bottom, #0b0909, #000000);
+}
+#project {
+  background: linear-gradient(to top, #ffcfcf, #e57373);
+}
+
+.signature {
+  font-family: 'Segoe Script', cursive, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 30px;
+  cursor: default;
+  color: #000000;
+  user-select: none;
+}
+/* === INFO IMAGE HOVER EFFECT === */
+.info-image-container {
+  width: 80%;
+  max-width: 900px;
+  margin: 40px auto 0;
+  border: 3px solid #e57373;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  padding-top: 27.3%;
+  box-shadow: 0 8px 20px rgba(229,115,115,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+}
+
+.info-image-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(229,115,115,0.3);
+  border-color: #e57373;
+}
+
+.info-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.info-image-container:hover img {
+  transform: scale(1.05);
+  filter: brightness(110%) saturate(120%);
+}
+
+.btn-group {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  background-color: #111;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.btn:hover {
+  background-color: #e57373;
+  color: white;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(229,115,115,0.4);
+}
+
+.image-section {
+  position: relative;
+  max-width: 600px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1.8s ease forwards;
+  border: 3px solid rgba(229,115,115,0.5);
+  box-shadow: 0 8px 20px rgba(229,115,115,0.2);
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(80px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(95%) saturate(110%);
+  transition: transform 1.5s ease, filter 1.5s ease;
+  animation: glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% { transform: scale(1); filter: brightness(95%) saturate(110%); }
+  50% { transform: scale(1.03); filter: brightness(105%) saturate(120%); }
+  100% { transform: scale(1); filter: brightness(95%) saturate(110%); }
+}
+
+.image-section {
+  position: relative;
+  max-width: 600px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1.8s ease forwards;
+  border: 3px solid rgba(229,115,115,0.5);
+  box-shadow: 0 8px 20px rgba(229,115,115,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+}
+
+.image-section:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(229,115,115,0.3);
+  border-color: #e57373;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(95%) saturate(110%);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+.image-section:hover img {
+  transform: scale(1.05);
+  filter: brightness(110%) saturate(120%);
+}
+#home .image-section {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+#home .image-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+#home .image-section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(229, 115, 115, 0.4);
+}
+
+#home .image-section:hover img {
+  transform: scale(1.08);
+  filter: brightness(115%) saturate(130%);
+}
+
+
+.chainsaw-logo {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #e57373;
+  letter-spacing: 0.1em;
+  user-select: none;
+  text-shadow: 0 0 6px rgba(229,115,115,0.6);
+}
+.chainsaw-logo span {
+  font-weight: 900;
+  font-size: 2.4rem;
+  display: block;
+  line-height: 1;
+}
+
+section {
+  padding: 50px 10%;
+  text-align: center;
+}
+
+
+section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 900;
+  color: #111;
+}
+
+section p {
+  font-size: 1.1rem;
+  color: #424040;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#info { background: linear-gradient(180deg, #fff, #f5f5f5); }
+#project { background: linear-gradient(180deg, #f5f5f5, #ececec); }
+#contact { background: #111; color: white; }
+#contact p { color: #ccc; }
+
+/* === PROJECT CARDS === */
+.project-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(229,115,115,0.3);
+  border-color: #e57373;
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  font-size: 1.4rem;
+  color: #111;
+  margin-top: 15px;
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: #474444;
+  padding: 10px 20px 25px 20px;
+  line-height: 1.5;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column-reverse;
+    padding: 20px 40px 40px 40px;
+  }
+  .image-section {
+    max-width: 100%;
+    margin-bottom: 40px;
+    border-radius: 0;
+  }
+  .background-text {
+    display: none;
+  }
+  nav {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  .project-cards {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#home" class="selected">HOME</a>
+    <a href="#info">INFO</a>
+    <a href="#project">PROJECT</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+
+  <div id="home" class="main-container">
+    <div class="background-text">ALICAN</div>
+    
+  <div class="text-section">
+      <h1 style="font-size:60px;">Alican Mikayilov</h1>
+      <h2 id="typing-text"></h2>
+      <p style="font-size:30px;"><strong>Alican Mikayilov, son of Vugar, was born in 2006 and studies at "Azerbaijan University."</strong></p>
+      <p>He loves programming (C++, Java, Python), watching anime (1000+ hours), and playing video games (10,000+ hours)...</p>
+      <div class="instagram-link">
+        steam/profile/nerfwould
+        <img src="makimaa.avif" alt="Makima small" />
+      </div>
+
+      <div class="signature">Mikayilov</div>
+      <div class="btn-group">
+        <a href="#info" class="btn">INFO</a>
+        <a href="#project" class="btn">PROJECT</a>
+        <a href="#contact" class="btn">CONTACT</a>
+      </div>
+    </div>
+
+    <div class="image-section">
+      <img src="makima.png" alt="Makima" />
+      <div class="chainsaw-logo">
+        NERF <span>WOULD</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="info">
+  <h2>INFO</h2>
+  <p>
+    Makima is one of the most mysterious and manipulative characters in Chainsaw Man. Her calm demeanor hides immense power and control. She works as a Devil Hunter for Public Safety, but her true intentions remain unknown...
+  </p>
+
+  <div class="info-image-container">
+    <img src="info.gif" alt="Makima Info Image">
+  </div>
+</section>
+
+
+
+  <section id="project">
+    <h2>PROJECT</h2>
+    <p>my projects:</p>
+
+    <div class="project-cards">
+      <div class="project-card">
+        <img src="11.gif" alt="Project 1">
+        <h3>Chainsaw Tracker</h3>
+        <p>A dynamic web app that tracks Devil Hunter missions using real-time APIs and sleek dashboards.</p>
+      </div>
+      <div class="project-card">
+        <img src="22.gif" alt="Project 2">
+        <h3>Infernal Engine</h3>
+        <p>An indie game project built with Unity — featuring procedurally generated levels and character AI.</p>
+      </div>
+      <div class="project-card">
+        <img src="33.gif" alt="Project 3">
+        <h3>DevilHub</h3>
+        <p>A social platform prototype for hunters to share information, tools, and mission data collaboratively.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+  <h2>CONTACT</h2>
+  <p>すべてのユミルの民へ告ぐ。俺の名はエレン・イェーガー。</p>
+  <div class="social-icons">
+    <a href="https://github.com/AlijanMikayilov" target="_blank" aria-label="GitHub">
+      <svg height="50" width="50" fill="#bbb" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.372 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.165c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.997.108-.775.418-1.305.76-1.605-2.665-.303-5.467-1.332-5.467-5.931 0-1.31.47-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.323 3.3 1.23a11.52 11.52 0 0 1 3-.404c1.02.005 2.04.137 3 .404 2.29-1.553 3.297-1.23 3.297-1.23.654 1.653.242 2.873.118 3.176.77.84 1.234 1.91 1.234 3.22 0 4.61-2.807 5.625-5.48 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.218.694.825.576C20.565 21.796 24 17.298 24 12c0-6.627-5.373-12-12-12z"/>
+      </svg>
+    </a>
+    <a href="mailto:alijan.mikayilov@gmail.com" aria-label="Email" style="font-size: 50px; color: #bbb; text-decoration: none;">?</a>
+    <a href="https://instagram.com/a7icann" target="_blank" aria-label="Instagram">
+      <svg height="50" width="50" fill="#bbb" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm4.75-3a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+      </svg>
+    </a>
+  </div>
+  <p class="copyright">© 2025 Alijan Mikayilov. All Rights Reserved.</p>
+</section>
+
+
+  <script>
+    // Navbar aktif linkleri guncelle
+    const sections = document.querySelectorAll("section, .main-container");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - window.innerHeight / 2;
+        const height = sec.offsetHeight;
+        if (top >= offset && top < offset + height) {
+          current = sec.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("selected");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("selected");
+        }
+      });
+    });
+
+    // Yaz? yazma animasyonu
+    const roles = ["Backend Developer ", "Game Developer "];
+    const typingElement = document.getElementById("typing-text");
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typingElement.textContent = currentRole.substring(0, charIndex--);
+      } else {
+        typingElement.textContent = currentRole.substring(0, charIndex++);
+      }
+
+      let typingSpeed = isDeleting ? 80 : 120;
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        typingSpeed = 1500;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        typingSpeed = 500;
+      }
+
+      setTimeout(typeEffect, typingSpeed);
+    }
+
+    document.addEventListener("DOMContentLoaded", typeEffect);
+  </script> 
+  
