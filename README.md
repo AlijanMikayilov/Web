@@ -7,7 +7,7 @@ It serves as a sample layout for personal or professional portfolio pages.
 
 ## 🚀 Live Demo
 You can view the live site here:  
-👉 [https://alijanmikayilov.github.io/](https://alijanmikayilov.github.io/)
+👉 [https://alijanmikayilov.netlify.app//]https://alijanmikayilov.netlify.app//)
 
 ---
 
